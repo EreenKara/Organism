@@ -5,7 +5,7 @@ class Hucre
 {
 private:
     int value;
-
+    Hucre* next;
 public:
 
 
