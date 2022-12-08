@@ -7,7 +7,7 @@ private:
     int value;
     Hucre* next;
 public:
-
+    Hucre(int value,Hucre* next);
 
 
 };
