@@ -1,14 +1,15 @@
 #ifndef BSTNode_hpp
 #define BSTNode_hpp
-#include "iostream"
+#include <iostream>
+#include "Doku.hpp"
 class BSTNode
 {
 private:
-    int value;
+    Doku* value;
     BSTNode* left;
     BSTNode* right;
 public:
-    BSTNode(int value,BSTNode* left,BSTNode* right);
+    BSTNode(Doku* value,BSTNode* left=NULL,BSTNode* right=NULL);
 };
 
 #endif

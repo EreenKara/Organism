@@ -1,6 +1,6 @@
 #include "BSTNode.hpp"
 
-BSTNode::BSTNode(int value,BSTNode* left=NULL,BSTNode* right=NULL)
+BSTNode::BSTNode(Doku* value,BSTNode* left,BSTNode* right)
 {
     this->value=value;
     this->left=left;

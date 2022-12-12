@@ -1,6 +1,5 @@
 #include "Hucre.hpp"
-#include <iostream>
-Hucre::Hucre(int value,Hucre* hucre=NULL)
+Hucre::Hucre(int value,Hucre* hucre)
 {
     this->value=value;
     this->next=hucre;
