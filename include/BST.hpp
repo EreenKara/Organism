@@ -11,10 +11,9 @@ private:
     void AddPrivate(BSTNode*& subnode,Doku* doku);
     void DeletePrivate(BSTNode*& subnode,int veri);
     void DeleteReal(BSTNode*& subnode);
-    // void DokuKopyalama(Doku*& doku1,Doku*& doku2);
+    void DokuKopyalama(Doku*& doku1,Doku*& doku2);
 public:
     BST();
-    
     void Add(Doku* doku);
     void Delete(int veri);
     void PostOrder();

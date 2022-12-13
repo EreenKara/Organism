@@ -48,16 +48,16 @@ void BST::AddPrivate(BSTNode*& subnode,Doku* doku)
         subnode->left=new BSTNode(doku,subnode->left);
     }
 }
-// void BST::DokuKopyalama(Doku*& doku1,Doku*& doku2)
-// {
-//     Hucre* temp=doku1->head;
-//     doku2->Clear();
-//     for (int i = 0; i < doku1->GetLength(); i++)
-//     {
-//         doku2->Add(temp->value);
-//         temp=temp->next;
-//     }
-// }
+void BST::DokuKopyalama(Doku*& doku1,Doku*& doku2)
+{
+    Hucre* temp=doku1->head;
+    doku2->Clear();
+    for (int i = 0; i < doku1->GetLength(); i++)
+    {
+        doku2->Add(temp->value);
+        temp=temp->next;
+    }
+}
 void BST::Delete(int veri)
 {
     DeletePrivate(kok,veri);
@@ -76,7 +76,7 @@ void BST::DeleteReal(BSTNode*& subnode)
             del=del->left;
         }
         parent->left=del->right;
-        // DokuKopyalama(del->doku,subnode->doku); // subnode->doku=del->doku; bir ifade ancak bunu yazmamın nedeni 
+        DokuKopyalama(del->doku,subnode->doku); // subnode->doku=del->doku; bir ifade ancak bunu yazmamın nedeni 
         // BSTNode silindiğinde destructor onun dokusunu da siliyor.
 
     }
@@ -102,4 +102,3 @@ void BST::DeletePrivate(BSTNode*& subnode,int veri)
     else if(veri<subnode->doku->Ortanca()) DeletePrivate(subnode->left,veri);
     else if (veri>subnode->doku->Ortanca()) DeletePrivate(subnode->right,veri);
 }
-
