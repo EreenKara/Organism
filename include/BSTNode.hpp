@@ -2,14 +2,17 @@
 #define BSTNode_hpp
 #include <iostream>
 #include "Doku.hpp"
+class BST;
 class BSTNode
 {
 private:
-    Doku* value;
+    Doku* doku;
     BSTNode* left;
     BSTNode* right;
+    int length;
+    friend BST;
 public:
-    BSTNode(Doku* value,BSTNode* left=NULL,BSTNode* right=NULL);
+    BSTNode(Doku* doku,BSTNode* left=NULL,BSTNode* right=NULL);
 };
 
 #endif

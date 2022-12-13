@@ -34,6 +34,7 @@ void Doku::Add(int veri,int index)
         temp->next=new Hucre(veri,temp->next);
         length++;
     }
+    
 }
 void Doku::Delete()
 {

@@ -1,8 +1,8 @@
 #include "BSTNode.hpp"
 
-BSTNode::BSTNode(Doku* value,BSTNode* left,BSTNode* right)
+BSTNode::BSTNode(Doku* doku,BSTNode* left,BSTNode* right)
 {
-    this->value=value;
+    this->doku=doku;
     this->left=left;
     this->right=right;
 }

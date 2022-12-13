@@ -8,10 +8,9 @@ class Hucre
 private:
     int value;
     Hucre* next;
+    friend Doku;
 public:
     Hucre(int value,Hucre* next=NULL);
-    friend Doku;
-    
 };
 
 #endif
