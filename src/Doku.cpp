@@ -10,6 +10,10 @@ Doku::Doku()
     head=NULL;
     length=0;
 }
+int Doku::GetLength()
+{
+    return length;
+}
 void Doku::Add(int veri)
 {
     Add(veri,length);

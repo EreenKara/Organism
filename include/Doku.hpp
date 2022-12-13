@@ -1,7 +1,7 @@
 #ifndef Doku_hpp
 #define Doku_hpp
 #include "Hucre.hpp"
-class Hucre;
+
 class Doku
 {
 private:
@@ -10,6 +10,7 @@ private:
 public:
     void RadixSort(); // sort by using radixsort 
     Doku();
+    int GetLength();
     void Add(int veri);
     void Add(int veri,int index);
     void Delete();

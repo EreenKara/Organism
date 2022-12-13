@@ -13,6 +13,8 @@ private:
     friend BST;
 public:
     BSTNode(Doku* doku,BSTNode* left=NULL,BSTNode* right=NULL);
+    ~BSTNode();
+    
 };
 
 #endif

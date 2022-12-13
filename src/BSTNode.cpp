@@ -6,3 +6,7 @@ BSTNode::BSTNode(Doku* doku,BSTNode* left,BSTNode* right)
     this->left=left;
     this->right=right;
 }
+BSTNode::~BSTNode()
+{
+    delete doku;
+}

@@ -1,6 +1,5 @@
 #ifndef Hucre_hpp
 #define Hucre_hpp
-#include "Doku.hpp"
 #include <iostream>
 class Doku;
 class Hucre
