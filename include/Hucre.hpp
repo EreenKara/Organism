@@ -4,6 +4,7 @@
 class Doku;
 class BST;
 class Queue;
+class Radix;
 class Hucre
 {
 private:
@@ -12,6 +13,7 @@ private:
     friend Doku;
     friend BST;
     friend Queue;
+    friend Radix;
 public:
     Hucre(int value,Hucre* next=NULL);
 };

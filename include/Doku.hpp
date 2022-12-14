@@ -2,12 +2,14 @@
 #define Doku_hpp
 #include "Hucre.hpp"
 class BST;
+class Radix;
 class Doku
 {
 private:
     Hucre* head;
     int length;
     friend BST;
+    friend Radix;
 public:
     void RadixSort(); // sort by using radixsort 
     Doku();

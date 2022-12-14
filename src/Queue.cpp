@@ -30,7 +30,6 @@ void Queue::Dequeue()
     {
         back=front->next; // zaten front'un next'i NULL olacağından NULL yazmadım. front->next dedim
     }
-    
     delete front;
     length--;
 }
