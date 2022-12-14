@@ -3,6 +3,7 @@
 #include <iostream>
 class Doku;
 class BST;
+class Queue;
 class Hucre
 {
 private:
@@ -10,6 +11,7 @@ private:
     Hucre* next;
     friend Doku;
     friend BST;
+    friend Queue;
 public:
     Hucre(int value,Hucre* next=NULL);
 };

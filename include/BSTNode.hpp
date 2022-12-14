@@ -2,6 +2,7 @@
 #define BSTNode_hpp
 #include <iostream>
 #include "Doku.hpp"
+// DokuNode olarakta düşünülebilir.
 class BST;
 class BSTNode
 {
