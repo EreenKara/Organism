@@ -8,6 +8,22 @@ int BST::Yukseklik(BSTNode* subnode)
     if(subnode) return 1+std::max(Yukseklik(subnode->left), Yukseklik(subnode->right));
     return -1;
 }
+bool BST::AVLmi(BSTNode* subnode)
+{
+    if(subnode)
+    {
+        if(abs(Yukseklik(subnode->left)-Yukseklik(subnode->right))>=2)
+        {
+            return false;
+        }
+        else
+        {
+            if(AVLmi(subnode->left)==false) return false;
+            if(AVLmi(subnode->right)==false) return false;
+        }
+    }
+    return true;
+}
 BSTNode* BST::Ara(BSTNode* subnode,int veri)
 {
     if(!subnode) return NULL;
@@ -50,7 +66,7 @@ void BST::AddPrivate(BSTNode*& subnode,Doku* doku)
 }
 void BST::DokuKopyalama(Doku*& doku1,Doku*& doku2)
 {
-    Hucre* temp=doku1->head;
+    Hucre* temp=doku1->hucreHead;
     doku2->Clear();
     for (int i = 0; i < doku1->GetLength(); i++)
     {
@@ -101,4 +117,13 @@ void BST::DeletePrivate(BSTNode*& subnode,int veri)
     else if(subnode->doku->Ortanca()==veri) DeleteReal(subnode);
     else if(veri<subnode->doku->Ortanca()) DeletePrivate(subnode->left,veri);
     else if (veri>subnode->doku->Ortanca()) DeletePrivate(subnode->right,veri);
+}
+void BST::CiftseYariyaDusur(BSTNode* subnode)
+{
+    if(subnode)
+    {
+        subnode->doku->YariyaDusur();
+        CiftseYariyaDusur(subnode->left);
+        CiftseYariyaDusur(subnode->right);
+    }
 }

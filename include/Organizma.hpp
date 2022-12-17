@@ -4,7 +4,7 @@
 class Organizma
 {
 private:
-    SistemNode* head;
+    SistemNode* sistemHead;
     int length;
 public:
     Organizma();

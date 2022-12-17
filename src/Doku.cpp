@@ -3,11 +3,24 @@
 
 void Doku::RadixSort()
 {
-
+    
+}
+void Doku::YariyaDusur()
+{
+    Hucre* temp=hucreHead;
+    for (int i = 0; i < length; i++)
+    {
+        if (temp->value%2==0)
+        {
+            temp->value=temp->value/2;
+        }
+        temp=temp->next;
+    }
 }
 Doku::Doku()
 {
-    head=NULL;
+    radix=new Radix();
+    hucreHead=NULL;
     length=0;
 }
 int Doku::GetLength()
@@ -22,15 +35,15 @@ void Doku::Add(int veri,int index)
 {
     if(index<0||index>length) return;
     Hucre* temp=FindPrevious(index);
-    if(head==0)
+    if(hucreHead==0)
     {
-        head=new Hucre(veri);
+        hucreHead=new Hucre(veri);
         length++;
     }
     else if(index==0)
     {
-        temp=new Hucre(veri,head);
-        head=temp;
+        temp=new Hucre(veri,hucreHead);
+        hucreHead=temp;
         length++;
     }
     else
@@ -50,7 +63,7 @@ void Doku::Delete(int index)
     Hucre* del=FindPrevious(index+1);
     if(index==0)
     {
-        head=del->next;
+        hucreHead=del->next;
     }
     else
     {
@@ -61,10 +74,35 @@ void Doku::Delete(int index)
     delete del;
     length--;
 }
+void Doku::KonumSirala(Hucre* subnode,Hucre* subnodePrevious,Hucre* gelecegiDugumOncesi)
+{
+    if(subnodePrevious!=NULL)
+    {
+        subnode->next=NULL;
+    }
+    else
+    {
+        subnodePrevious->next=subnode->next;
+        subnode->next=NULL;
+    }
+    // Bağalntıyı koparmak için 
+
+    if(gelecegiDugumOncesi==NULL)
+    {
+        subnode->next=hucreHead;
+        hucreHead=subnode;
+    }
+    else
+    {
+        subnode->next=gelecegiDugumOncesi->next;
+        gelecegiDugumOncesi->next=subnode;
+    }
+
+}
 Hucre* Doku::FindPrevious(int index)
 {
     if(index<=0||index>length) return NULL;
-    Hucre* temp=head;
+    Hucre* temp=hucreHead;
     for (int i = 0; i < index-1; i++)
     {
         temp=temp->next;
@@ -73,7 +111,7 @@ Hucre* Doku::FindPrevious(int index)
 }
 int Doku::Ortanca()
 {
-    Hucre* temp=head;
+    Hucre* temp=hucreHead;
     for (size_t i = 0; i < (length/2); i++)
     {
         temp=temp->next;
@@ -82,7 +120,7 @@ int Doku::Ortanca()
 }
 void Doku::Print()
 {
-    Hucre* temp=head;
+    Hucre* temp=hucreHead;
     for (int i = 0; i < length; i++)
     {
         std::cout<<temp->value<<"  ";
@@ -91,7 +129,7 @@ void Doku::Print()
 }
 void Doku::Clear()
 {
-    Hucre* temp=head;
+    Hucre* temp=hucreHead;
     Hucre* del;
     for (int i = 0; i < length; i++)
     {
@@ -99,7 +137,7 @@ void Doku::Clear()
         temp=temp->next;
         delete del;
     }
-    head=0;
+    hucreHead=0;
     length=0;
 }
 Doku::~Doku()

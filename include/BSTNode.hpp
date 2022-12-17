@@ -4,6 +4,8 @@
 #include "Doku.hpp"
 // DokuNode olarakta düşünülebilir.
 class BST;
+class Organizma;
+class Organ;
 class BSTNode
 {
 private:
@@ -12,9 +14,12 @@ private:
     BSTNode* right;
     int length;
     friend BST;
+    friend Organ;
+    friend Organizma;
+    ~BSTNode();
 public:
     BSTNode(Doku* doku,BSTNode* left=NULL,BSTNode* right=NULL);
-    ~BSTNode();
+    
     
 };
 

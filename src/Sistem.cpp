@@ -2,15 +2,15 @@
 
 Sistem::Sistem()
 {
-    head=NULL;
+    organHead=NULL;
     length=0;
 }
 void Sistem::Add(Organ* organ)
 {
-    OrganNode* temp=head;
-    if(head==NULL)
+    OrganNode* temp=organHead;
+    if(organHead==NULL)
     {
-        head=new OrganNode(organ);
+        organHead=new OrganNode(organ);
     }
     else
     {
@@ -24,13 +24,13 @@ void Sistem::Add(Organ* organ)
 }
 void Sistem::Delete()
 {
-    OrganNode* temp=head;
+    OrganNode* temp=organHead;
     OrganNode* del;
     if(length==0) return;
     else if(length==1)
     {
-        del=head;
-        head=NULL;
+        del=organHead;
+        organHead=NULL;
     }
     else 
     {

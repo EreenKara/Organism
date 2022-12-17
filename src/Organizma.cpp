@@ -1,24 +1,35 @@
 #include "Organizma.hpp"
 Organizma::Organizma()
 {
-    this->head=NULL;
+    this->sistemHead=NULL;
     this->length=0;
 }
 void Organizma::MutasyonaUgra()
 {
-    SistemNode* temp=head;
+    SistemNode* sistemTemp=sistemHead;
     for (int i = 0; i < length; i++)
     {
-        
+        OrganNode* organTemp=sistemTemp->sistem->organHead;
+        for (int j = 0; j < sistemTemp->sistem->length; j++)
+        {
+            //organ
+            if(organTemp->organ->agac->kok->doku->Ortanca()%50==0)
+            {
+                organTemp->organ->MutasyonaUgra();
+            }
+            organTemp=organTemp->next;
+        }
+        //sistem
+        sistemTemp=sistemTemp->next;
     }
     
 }
 void Organizma::Add(Sistem* sistem)
 {
-    SistemNode* temp=head;
-    if(head==NULL)
+    SistemNode* temp=sistemHead;
+    if(sistemHead==NULL)
     {
-        head=new SistemNode(sistem);
+        sistemHead=new SistemNode(sistem);
     }
     else
     {
@@ -32,13 +43,13 @@ void Organizma::Add(Sistem* sistem)
 }
 void Organizma::Delete()
 {
-    SistemNode* temp=head;
+    SistemNode* temp=sistemHead;
     SistemNode* del;
     if(length==0) return;
     else if(length==1)
     {
-        del=head;
-        head=NULL;
+        del=sistemHead;
+        sistemHead=NULL;
     }
     else 
     {

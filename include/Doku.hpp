@@ -3,16 +3,20 @@
 #include "Hucre.hpp"
 class BST;
 class Radix;
+class Organ;
 class Doku
 {
 private:
-    Hucre* head;
+    Hucre* hucreHead;
+    Radix* radix;
     int length;
     friend BST;
+    friend Organ;
     friend Radix;
 public:
     void RadixSort(); // sort by using radixsort 
     Doku();
+    void YariyaDusur();
     int GetLength();
     void Add(int veri);
     void Add(int veri,int index);
@@ -21,6 +25,7 @@ public:
     Hucre* FindPrevious(int index);
     int Ortanca();
     void Print();
+    void KonumSirala(Hucre* subnode,Hucre* subnodePrevious,Hucre* gelecegiDugumOncesi);
     ~Doku();
     void Clear();
 

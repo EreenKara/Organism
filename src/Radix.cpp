@@ -27,7 +27,7 @@ int Radix::BasamakSayisi(int sayi)
 int Radix::EnBuyukBasamak()
 {
     int enBuyukBasamak=0;
-    Hucre* temp=doku->head;
+    Hucre* temp=doku->hucreHead;
     for (int i = 0; i < doku->length; i++)
     {
         if(enBuyukBasamak<BasamakSayisi(temp->value))
@@ -40,7 +40,7 @@ int Radix::EnBuyukBasamak()
 void Radix::Sort()
 {
     int basamakDegeri=0;
-    Hucre* temp=doku->head;
+    Hucre* temp=doku->hucreHead;
     for (int i = 0; i < doku->length; i++)
     {
         basamakDegeri=temp->value%10;
@@ -75,24 +75,35 @@ void Radix::Sort()
         }
         
     }
-    temp=doku->head;
-    Hucre* gelecegiDugum=doku->head;
+    temp=doku->hucreHead;  // gezip uyuşan elemanı bulmak için
+    Hucre* tempPrevious=NULL;  // Konumunu değiştirmek için bir öncesindeki düğüme ihtiyacım var
+    Hucre* gelecegiDugumOncesi=NULL;  // hangi konuma geleceğini ben beliriliyorum çünkü bunlar sıralanmış sayılar 1 2  3 şeklinde gidecek
     for (int i = 0; i < doku->length; i++)
     {
-        temp=doku->head;
-        for (int j = 0; j < doku->length; j++)
+        if(gelecegiDugumOncesi!=NULL) temp=gelecegiDugumOncesi->next;
+        tempPrevious=NULL;
+        for (int j = 0; j < doku->length; j++)  // listeden eşleşeni bulma
         {
             if(temp->value==siralanmisSayilar[i])
             {
                 break;
             }
+            tempPrevious=temp;
             temp=temp->next;
         }
-        
+
+        doku->KonumSirala(temp,tempPrevious,gelecegiDugumOncesi);
+
+        if(gelecegiDugumOncesi==NULL)
+        {
+            gelecegiDugumOncesi=doku->hucreHead; 
+        }
+        else
+        {
+            gelecegiDugumOncesi=gelecegiDugumOncesi->next;
+        }
     }
-    
-
-
+    delete [] siralanmisSayilar;
 }
 Radix::~Radix()
 {
