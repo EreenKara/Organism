@@ -2,18 +2,19 @@
 #define Radix_hpp
 #include "Doku.hpp"
 #include "Queue.hpp"
+class Doku;
 class Radix
 {
 private:
-    Doku* doku;
     Queue* kuyruklar;
     int maxBasamak;
+    friend Doku;
 public:
-    Radix(Doku* doku); 
+    Radix(); 
     int* KuyruklarinUzunlugu();
     int BasamakSayisi(int sayi);
-    int EnBuyukBasamak();
-    void Sort();
+    int EnBuyukBasamak(Hucre* head,int length);
+    int* Sort(Hucre* head,int length);
     ~Radix();
     //void Open(Doku* doku);
 };

@@ -3,7 +3,36 @@
 
 void Doku::RadixSort()
 {
-    
+    int* siralanmisSayilar=radix->Sort(hucreHead,length);
+    Hucre* temp=hucreHead;  // gezip uyuşan elemanı bulmak için
+    Hucre* tempPrevious=NULL;  // Konumunu değiştirmek için bir öncesindeki düğüme ihtiyacım var
+    Hucre* gelecegiDugumOncesi=NULL;  // hangi konuma geleceğini ben beliriliyorum çünkü bunlar sıralanmış sayılar 1 2  3 şeklinde gidecek
+    for (int i = 0; i < length; i++)
+    {
+        if(gelecegiDugumOncesi!=NULL) temp=gelecegiDugumOncesi->next;
+        tempPrevious=NULL;
+        for (int j = 0; j < length; j++)  // listeden eşleşeni bulma
+        {
+            if(temp->value==siralanmisSayilar[i])
+            {
+                break;
+            }
+            tempPrevious=temp;
+            temp=temp->next;
+        }
+
+        KonumSirala(temp,tempPrevious,gelecegiDugumOncesi);
+
+        if(gelecegiDugumOncesi==NULL)
+        {
+            gelecegiDugumOncesi=hucreHead; 
+        }
+        else
+        {
+            gelecegiDugumOncesi=gelecegiDugumOncesi->next;
+        }
+    }
+    delete[] siralanmisSayilar;
 }
 void Doku::YariyaDusur()
 {

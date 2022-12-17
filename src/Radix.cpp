@@ -1,9 +1,8 @@
 #include "Radix.hpp"
-Radix::Radix(Doku* doku)
+Radix::Radix()
 {
-    this->doku=doku;
     this->kuyruklar=new Queue[10];
-    this->maxBasamak=EnBuyukBasamak();
+    this->maxBasamak=0;
 }
 int* Radix::KuyruklarinUzunlugu()  // cagıtrdıgın yerde bu uzunluk ile işin bittiyse onu sil
 {
@@ -24,24 +23,26 @@ int Radix::BasamakSayisi(int sayi)
     }
     return basamak;
 }
-int Radix::EnBuyukBasamak()
+int Radix::EnBuyukBasamak(Hucre* head,int length)
 {
     int enBuyukBasamak=0;
-    Hucre* temp=doku->hucreHead;
-    for (int i = 0; i < doku->length; i++)
+    Hucre* temp=head;
+    for (int i = 0; i < length; i++)
     {
         if(enBuyukBasamak<BasamakSayisi(temp->value))
         {
             enBuyukBasamak=BasamakSayisi(temp->value);
         }
     }
+    maxBasamak=enBuyukBasamak;
     return enBuyukBasamak;
 }
-void Radix::Sort()
+int* Radix::Sort(Hucre* head,int length)
 {
+    EnBuyukBasamak(head,length);
     int basamakDegeri=0;
-    Hucre* temp=doku->hucreHead;
-    for (int i = 0; i < doku->length; i++)
+    Hucre* temp=head;
+    for (int i = 0; i < length; i++)
     {
         basamakDegeri=temp->value%10;
         kuyruklar[basamakDegeri].Enqueue(temp->value);
@@ -64,7 +65,7 @@ void Radix::Sort()
         }        
     }
     delete [] kuyruklarinSuankiDolulugu;
-    int* siralanmisSayilar=new int[doku->length]; 
+    int* siralanmisSayilar=new int[length]; 
     int index=0;
     for (int i = 0; i < 10; i++)
     {
@@ -73,37 +74,8 @@ void Radix::Sort()
             siralanmisSayilar[index++]=kuyruklar[i].Peek();
             kuyruklar[i].Dequeue();
         }
-        
     }
-    temp=doku->hucreHead;  // gezip uyuşan elemanı bulmak için
-    Hucre* tempPrevious=NULL;  // Konumunu değiştirmek için bir öncesindeki düğüme ihtiyacım var
-    Hucre* gelecegiDugumOncesi=NULL;  // hangi konuma geleceğini ben beliriliyorum çünkü bunlar sıralanmış sayılar 1 2  3 şeklinde gidecek
-    for (int i = 0; i < doku->length; i++)
-    {
-        if(gelecegiDugumOncesi!=NULL) temp=gelecegiDugumOncesi->next;
-        tempPrevious=NULL;
-        for (int j = 0; j < doku->length; j++)  // listeden eşleşeni bulma
-        {
-            if(temp->value==siralanmisSayilar[i])
-            {
-                break;
-            }
-            tempPrevious=temp;
-            temp=temp->next;
-        }
-
-        doku->KonumSirala(temp,tempPrevious,gelecegiDugumOncesi);
-
-        if(gelecegiDugumOncesi==NULL)
-        {
-            gelecegiDugumOncesi=doku->hucreHead; 
-        }
-        else
-        {
-            gelecegiDugumOncesi=gelecegiDugumOncesi->next;
-        }
-    }
-    delete [] siralanmisSayilar;
+    return siralanmisSayilar;
 }
 Radix::~Radix()
 {

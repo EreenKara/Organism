@@ -1,6 +1,7 @@
 #ifndef Doku_hpp
 #define Doku_hpp
 #include "Hucre.hpp"
+#include "Radix.hpp"
 class BST;
 class Radix;
 class Organ;
