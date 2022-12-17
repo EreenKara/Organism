@@ -7,6 +7,10 @@ class Kontrol
 private:
     Organizma* organizma;
     DosyaOkuma* dosya;
+    int dokuSayisi;
+    int organSayisi;
+    int sistemSayisi;
+
 public:
     Kontrol(string dosyaYolu);
     void OrganizmayiOlustur();

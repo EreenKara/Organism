@@ -12,6 +12,7 @@ DosyaOkuma::DosyaOkuma(string dosyaYolu)  // dosyayolunda bir dosya var mı yok 
         satirSayisi++;
     }
     Read.close();
+    satirdakiSayiSayisi=new int[satirSayisi];
 }
 int* DosyaOkuma::BelirliBirSatir(int satirNumarasi)
 {
@@ -57,6 +58,7 @@ int** DosyaOkuma::Oku()  //döndürdüğü adresin alanını geri bırakmıyor b
             }
         }
         sayilar[i]=new int[satirdakiSayiSayisi];
+        this->satirdakiSayiSayisi[i]=satirdakiSayiSayisi;
         for (int j = 0; j < satirdakiSayiSayisi; j++)
         {
             sayilar[i][j] = stoi(yazi.substr(0, yazi.find(" ")));    // stoi fonksiyonu stringi integer'a çeviriyor.

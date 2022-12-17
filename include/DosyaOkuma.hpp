@@ -12,6 +12,7 @@ private:
     ofstream Write;
     string dosyaYolu;
     int satirSayisi;
+    int* satirdakiSayiSayisi;
     friend Kontrol;
 public:
     DosyaOkuma(string dosyaYolu);

@@ -7,7 +7,7 @@ using namespace std;
 int main()
 {
     DosyaOkuma dosya("Veri.txt");
-    dosya.KontrolPaneli();
+    
     
     
     
