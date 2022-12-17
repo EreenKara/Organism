@@ -22,7 +22,6 @@ void Organizma::MutasyonaUgra()
         //sistem
         sistemTemp=sistemTemp->next;
     }
-    
 }
 void Organizma::Add(Sistem* sistem)
 {

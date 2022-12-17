@@ -3,6 +3,7 @@
 #include <iostream>
 #include "Doku.hpp"
 // DokuNode olarakta düşünülebilir.
+class Kontrol;
 class BST;
 class Organizma;
 class Organ;
@@ -16,6 +17,7 @@ private:
     friend BST;
     friend Organ;
     friend Organizma;
+    friend Kontrol;
     ~BSTNode();
 public:
     BSTNode(Doku* doku,BSTNode* left=NULL,BSTNode* right=NULL);

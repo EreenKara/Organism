@@ -2,6 +2,7 @@
 #define Radix_hpp
 #include "Doku.hpp"
 #include "Queue.hpp"
+class Kontrol;
 class Doku;
 class Radix
 {
@@ -9,6 +10,7 @@ private:
     Queue* kuyruklar;
     int maxBasamak;
     friend Doku;
+    friend Kontrol;
 public:
     Radix(); 
     int* KuyruklarinUzunlugu();

@@ -1,6 +1,7 @@
 #ifndef Hucre_hpp
 #define Hucre_hpp
 #include <iostream>
+class Kontrol;
 class Doku;
 class BST;
 class Queue;
@@ -14,6 +15,7 @@ private:
     friend BST;
     friend Queue;
     friend Radix;
+    friend Kontrol;
 public:
     Hucre(int value,Hucre* next=NULL);
 };

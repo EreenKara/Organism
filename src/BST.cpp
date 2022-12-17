@@ -80,7 +80,6 @@ void BST::Delete(int veri)
 }
 void BST::DeleteReal(BSTNode*& subnode)
 {
-    
     BSTNode* del;
     if(subnode->left!=0 && subnode->right!=0)  // hem solu hem sağı varsa
     {
@@ -118,12 +117,62 @@ void BST::DeletePrivate(BSTNode*& subnode,int veri)
     else if(veri<subnode->doku->Ortanca()) DeletePrivate(subnode->left,veri);
     else if (veri>subnode->doku->Ortanca()) DeletePrivate(subnode->right,veri);
 }
-void BST::CiftseYariyaDusur(BSTNode* subnode)
+void BST::PreOrderMutasyon(BSTNode* subnode)
 {
     if(subnode)
     {
         subnode->doku->YariyaDusur();
-        CiftseYariyaDusur(subnode->left);
-        CiftseYariyaDusur(subnode->right);
+        PreOrderMutasyon(subnode->left);
+        PreOrderMutasyon(subnode->right);
     }
 }
+void BST::PostOrderYeniAgac()
+{
+    BSTNode* yeniKok=NULL;
+    Doku** dokular=new Doku*[20];
+    PostOrderYedekle(dokular,kok);
+    for (int i = 0; i < 20; i++)
+    {
+        AddPrivate(yeniKok,dokular[i]);
+    }
+    PostOrderSil(kok);
+    kok=yeniKok;
+}
+void BST::PostOrderYedekle(Doku** dokular,BSTNode* subnode)
+{
+    static int index=0;
+    if(subnode)
+    {   
+        PostOrderYedekle(dokular,subnode->left);
+        PostOrderYedekle(dokular,subnode->right);
+        dokular[index]=subnode->doku;
+        index++;
+    }
+}
+void BST::PostOrderSil(BSTNode* subnode)
+{
+    if(subnode)
+    {   
+        PostOrderSil(subnode->left);
+        PostOrderSil(subnode->right);
+        Delete(subnode->doku->Ortanca());
+    }
+}
+
+
+
+
+
+// void BST::Clear()
+// {
+//     ClearPrivate(kok);
+// }
+// void BST::ClearPrivate(BSTNode* subnode)
+// {
+//     if(subnode)
+//     {
+//         Delete(subnode->doku->Ortanca());
+//         ClearPrivate(subnode->left);
+//         ClearPrivate(subnode->right);
+//     }
+// }

@@ -1,16 +1,16 @@
-#include <iostream>
-#include <fstream>
-#include <string>
-using namespace std;
-class Kontrol  // verilerin üzerinde yapacağım değişiklikler bu sınıf aracılığıyla olacak
+#ifndef Kontrol_hpp
+#define Kontrol_hpp
+#include "Organizma.hpp"
+#include "DosyaOkuma.hpp"
+class Kontrol
 {
 private:
-    ifstream Read;
-    ofstream Write;
-    string dosyaYolu;
-    int satirSayisi;
+    Organizma* organizma;
+    DosyaOkuma* dosya;
 public:
     Kontrol(string dosyaYolu);
-    int* BelirliBirSatir(int index);
-    int** Oku();
+    void OrganizmayiOlustur();
+    ~Kontrol();
 };
+
+#endif

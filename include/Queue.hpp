@@ -1,6 +1,7 @@
 #ifndef Queue_hpp
 #define Queue_hpp
 #include "Hucre.hpp"
+class Kontrol;
 class Radix;
 class Queue
 {
@@ -9,6 +10,7 @@ private:
     Hucre* back;
     int length;
     friend Radix;
+    friend Kontrol;
 public:
     Queue();
     int Peek();

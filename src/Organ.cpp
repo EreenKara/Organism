@@ -9,5 +9,6 @@ bool Organ::Dengesizmi()
 }
 void Organ::MutasyonaUgra()
 {
-    agac->CiftseYariyaDusur(agac->kok);
+    agac->PreOrderMutasyon(agac->kok);
+    ;
 }

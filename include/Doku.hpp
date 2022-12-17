@@ -2,6 +2,7 @@
 #define Doku_hpp
 #include "Hucre.hpp"
 #include "Radix.hpp"
+class Kontrol;
 class BST;
 class Radix;
 class Organ;
@@ -14,6 +15,7 @@ private:
     friend BST;
     friend Organ;
     friend Radix;
+    friend Kontrol;
 public:
     void RadixSort(); // sort by using radixsort 
     Doku();

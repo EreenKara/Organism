@@ -1,13 +1,13 @@
 #include <iostream>
 #include "Doku.hpp"
 #include "BST.hpp"
-#include "Kontrol.hpp"
+#include "DosyaOkuma.hpp"
 using namespace std;
 
 int main()
 {
-    Kontrol kontrol("Veri.txt");
-    
+    DosyaOkuma dosya("Veri.txt");
+    dosya.KontrolPaneli();
     
     
     

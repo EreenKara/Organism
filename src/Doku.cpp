@@ -10,6 +10,7 @@ void Doku::RadixSort()
     for (int i = 0; i < length; i++)
     {
         if(gelecegiDugumOncesi!=NULL) temp=gelecegiDugumOncesi->next;
+
         tempPrevious=NULL;
         for (int j = 0; j < length; j++)  // listeden eşleşeni bulma
         {
@@ -172,4 +173,5 @@ void Doku::Clear()
 Doku::~Doku()
 {
     Clear();
+    delete radix;
 }
