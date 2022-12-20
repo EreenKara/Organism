@@ -4,11 +4,9 @@ using namespace std;
 
 int main()
 {
-    Kontrol* kontrol=new Kontrol("Veri.txt"); 
+    Kontrol* kontrol=new Kontrol("Veriler.txt"); 
     kontrol->Yazdir();
-    
-    
-    
+    delete kontrol;
     
     
     

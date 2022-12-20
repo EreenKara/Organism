@@ -30,6 +30,7 @@ public:
     void Delete(int veri);
     void PostOrder();
     void Clear();
+    ~BST();
     
 };
 

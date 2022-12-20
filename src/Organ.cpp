@@ -11,3 +11,7 @@ void Organ::MutasyonaUgra()
 {
     agac->PreOrderMutasyon(agac->kok);
 }
+Organ::~Organ()
+{
+    delete agac;
+}

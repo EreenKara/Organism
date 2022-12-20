@@ -56,8 +56,10 @@ void Organizma::Delete()
         {
             temp=temp->next;
         }
+        
         del=temp->next;
         temp->next=NULL;
+        
     }
     delete del;
     length--;

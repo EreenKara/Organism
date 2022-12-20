@@ -38,32 +38,67 @@ int* DosyaOkuma::BelirliBirSatir(int satirNumarasi)
     Read.close();
     return sayilar;
 }
+
 int** DosyaOkuma::Oku()  //döndürdüğü adresin alanını geri bırakmıyor bu yüzden eğer bunu kullandıktan sonra işin biterse bunu sil
 {
     string yazi="";
     int satirdakiSayiSayisi=0;
     int** sayilar=new int*[satirSayisi];
     Read.open(dosyaYolu,ios::in);
-
     for (int i = 0; i < satirSayisi; i++)
     {
         satirdakiSayiSayisi=0;
         getline(Read,yazi);
-        for (int i = 0; i < yazi.length(); i++)
+        istringstream iss(yazi);
+        istringstream isss(yazi);
+        string sayi="";
+        for(int j=0;getline(iss,sayi,' ');j++)
         {
-            if (yazi[i] ==' ')
-            {
-                satirdakiSayiSayisi++;
-            }
+            satirdakiSayiSayisi++;
         }
         sayilar[i]=new int[satirdakiSayiSayisi];
         this->satirSayiSayisi[i]=satirdakiSayiSayisi;
-        for (int j = 0; j < satirdakiSayiSayisi; j++)
+        
+        for(int j=0;getline(isss,sayi,' ');j++)
         {
-            sayilar[i][j] = stoi(yazi.substr(0, yazi.find(" ")));    // stoi fonksiyonu stringi integer'a çeviriyor.
-            yazi = yazi.substr(yazi.find(" ")+1, yazi.length());
+            sayilar[i][j]=stoi(sayi);
         }
     }
     Read.close();
     return sayilar;
 }
+
+DosyaOkuma::~DosyaOkuma()
+{
+    delete[] satirSayiSayisi;
+}
+// int** DosyaOkuma::Oku()  //döndürdüğü adresin alanını geri bırakmıyor bu yüzden eğer bunu kullandıktan sonra işin biterse bunu sil
+// {
+//     string yazi="";
+//     int satirdakiSayiSayisi=0;
+//     int** sayilar=new int*[satirSayisi];
+//     Read.open(dosyaYolu,ios::in);
+
+//     for (int i = 0; i < satirSayisi; i++)
+//     {
+//         satirdakiSayiSayisi=0;
+//         getline(Read,yazi);
+//         for (int i = 0; i < yazi.length(); i++)
+//         {
+//             if (yazi[i] ==' ')
+//             {
+//                 satirdakiSayiSayisi++;
+//             }
+//         }
+//         sayilar[i]=new int[satirdakiSayiSayisi];
+//         this->satirSayiSayisi[i]=satirdakiSayiSayisi;
+//         for (int j = 0; j < satirdakiSayiSayisi; j++)
+//         {
+//             sayilar[i][j] = stoi(yazi.substr(0, yazi.find(" ")));    // stoi fonksiyonu stringi integer'a çeviriyor.
+//             yazi = yazi.substr(yazi.find(" ")+1, yazi.length());
+//         }
+//     }
+//     Read.close();
+//     return sayilar;
+// }
+

@@ -14,13 +14,14 @@ bool BST::AVLmi(BSTNode* subnode)
     {
         if(abs(Yukseklik(subnode->left)-Yukseklik(subnode->right))>=2)
         {
+            
             return false;
         }
-        // else
-        // {
-        //     if(AVLmi(subnode->left)==false) return false;
-        //     if(AVLmi(subnode->right)==false) return false;
-        // }
+        else
+        {
+            if(AVLmi(subnode->left)==false) return false;
+            if(AVLmi(subnode->right)==false) return false;
+        }
     }
     return true;
 }
@@ -63,6 +64,7 @@ void BST::AddPrivate(BSTNode*& subnode,Doku* doku)
     {
         subnode->left=new BSTNode(doku,subnode->left);
     }
+    
 }
 void BST::DokuKopyalama(Doku*& doku1,Doku*& doku2)
 {
@@ -90,25 +92,33 @@ void BST::DeleteReal(BSTNode*& subnode)
             parent=del;
             del=del->left;
         }
-        parent->left=del->right;
-        DokuKopyalama(del->doku,subnode->doku); // subnode->doku=del->doku; bir ifade ancak bunu yazmamın nedeni 
-        // BSTNode silindiğinde destructor onun dokusunu da siliyor.
-
+        DokuKopyalama(del->doku,subnode->doku);
+        if(parent==subnode)    subnode->right=parent->right;
+        else
+            parent->left=del->right;
+        // subnode->doku=del->doku; bir ifade ancak bunu yazmamın nedeni 
+        // BSTNode silindiğinde destructor onun dokusunu da siliyor
     }
     else
     {
-        if(subnode->left!=0)  //solu varsa
-        {
-            del=subnode;
-            subnode=subnode->left;
-        }
-        else if(subnode->right!=0) // sağı varsa
+        if(subnode->left==0)  
         {
             del=subnode;
             subnode=subnode->right;
         }
+        else if(subnode->right==0) // sağı varsa
+        {
+            del=subnode;
+            subnode=subnode->left;
+        }
+        else
+        {
+            del=subnode;
+            subnode=0;
+        }
     }
     delete del;
+    
 }
 void BST::DeletePrivate(BSTNode*& subnode,int veri)
 {
@@ -153,26 +163,33 @@ void BST::PostOrderSil(BSTNode* subnode)
 {
     if(subnode)
     {   
+        
         PostOrderSil(subnode->left);
         PostOrderSil(subnode->right);
         Delete(subnode->doku->Ortanca());
     }
 }
 
+BST::~BST()
+{
+
+    Clear();
+}
 
 
 
-
-// void BST::Clear()
-// {
-//     ClearPrivate(kok);
-// }
-// void BST::ClearPrivate(BSTNode* subnode)
-// {
-//     if(subnode)
-//     {
-//         Delete(subnode->doku->Ortanca());
-//         ClearPrivate(subnode->left);
-//         ClearPrivate(subnode->right);
-//     }
-// }
+void BST::Clear()
+{
+    ClearPrivate(kok);
+    
+}
+void BST::ClearPrivate(BSTNode* subnode)
+{
+    
+    if(subnode)
+    {
+        ClearPrivate(subnode->left);
+        ClearPrivate(subnode->right);
+        DeleteReal(subnode);
+    }
+}

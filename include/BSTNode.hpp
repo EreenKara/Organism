@@ -7,6 +7,8 @@ class Kontrol;
 class BST;
 class Organizma;
 class Organ;
+
+
 class BSTNode
 {
 private:
@@ -18,10 +20,10 @@ private:
     friend Organ;
     friend Organizma;
     friend Kontrol;
-    ~BSTNode();
+    
 public:
     BSTNode(Doku* doku,BSTNode* left=NULL,BSTNode* right=NULL);
-    
+    ~BSTNode();
     
 };
 

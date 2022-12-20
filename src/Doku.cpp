@@ -3,17 +3,18 @@
 
 void Doku::RadixSort()
 {
-    std::cout<<"Basladi"<<std::endl;
     int* siralanmisSayilar=radix->Sort(hucreHead,length);
     Hucre* temp=hucreHead;  // gezip uyuşan elemanı bulmak için
     Hucre* tempPrevious=NULL;  // Konumunu değiştirmek için bir öncesindeki düğüme ihtiyacım var
     Hucre* gelecegiDugumOncesi=NULL;  // hangi konuma geleceğini ben beliriliyorum çünkü bunlar sıralanmış sayılar 1 2  3 şeklinde gidecek
-    std::cout<<"Hata Bulmaca 1"<<std::endl;
-    for (int i = 0; i < length; i++)
+    for (int i = 0; i < length-1; i++)
     {
-        if(gelecegiDugumOncesi!=NULL) temp=gelecegiDugumOncesi->next;
-
         tempPrevious=NULL;
+        if(gelecegiDugumOncesi!=NULL) 
+        {
+            temp=gelecegiDugumOncesi->next;
+            tempPrevious=gelecegiDugumOncesi;
+        }     
         for (int j = 0; j < length; j++)  // listeden eşleşeni bulma
         {
             if(temp->value==siralanmisSayilar[i])
@@ -22,8 +23,9 @@ void Doku::RadixSort()
             }
             tempPrevious=temp;
             temp=temp->next;
-        }
+        }       
         KonumSirala(temp,tempPrevious,gelecegiDugumOncesi); // hata var
+
         if(gelecegiDugumOncesi==NULL)
         {
             gelecegiDugumOncesi=hucreHead; 
@@ -34,6 +36,30 @@ void Doku::RadixSort()
         }
     }
     delete[] siralanmisSayilar;
+}
+void Doku::KonumSirala(Hucre* subnode,Hucre* subnodePrevious,Hucre* gelecegiDugumOncesi)
+{
+    if(subnodePrevious==NULL)
+    {
+        hucreHead=subnode->next;
+        subnode->next=NULL;
+    }
+    else
+    {
+        subnodePrevious->next=subnode->next;
+        subnode->next=NULL;
+    }
+    // Bağalntıyı koparmak için 
+    if(gelecegiDugumOncesi==NULL)
+    {
+        subnode->next=hucreHead;
+        hucreHead=subnode;
+    }
+    else
+    {
+        subnode->next=gelecegiDugumOncesi->next;
+        gelecegiDugumOncesi->next=subnode;
+    }
 }
 void Doku::YariyaDusur()
 {
@@ -104,31 +130,7 @@ void Doku::Delete(int index)
     delete del;
     length--;
 }
-void Doku::KonumSirala(Hucre* subnode,Hucre* subnodePrevious,Hucre* gelecegiDugumOncesi)
-{
-    if(subnodePrevious!=NULL)
-    {
-        subnode->next=NULL;
-    }
-    else
-    {
-        subnodePrevious->next=subnode->next;
-        subnode->next=NULL;
-    }
-    // Bağalntıyı koparmak için 
 
-    if(gelecegiDugumOncesi==NULL)
-    {
-        subnode->next=hucreHead;
-        hucreHead=subnode;
-    }
-    else
-    {
-        subnode->next=gelecegiDugumOncesi->next;
-        gelecegiDugumOncesi->next=subnode;
-    }
-
-}
 Hucre* Doku::FindPrevious(int index)
 {
     if(index<=0||index>length) return NULL;
