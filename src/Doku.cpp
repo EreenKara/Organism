@@ -3,10 +3,12 @@
 
 void Doku::RadixSort()
 {
+    std::cout<<"Basladi"<<std::endl;
     int* siralanmisSayilar=radix->Sort(hucreHead,length);
     Hucre* temp=hucreHead;  // gezip uyuşan elemanı bulmak için
     Hucre* tempPrevious=NULL;  // Konumunu değiştirmek için bir öncesindeki düğüme ihtiyacım var
     Hucre* gelecegiDugumOncesi=NULL;  // hangi konuma geleceğini ben beliriliyorum çünkü bunlar sıralanmış sayılar 1 2  3 şeklinde gidecek
+    std::cout<<"Hata Bulmaca 1"<<std::endl;
     for (int i = 0; i < length; i++)
     {
         if(gelecegiDugumOncesi!=NULL) temp=gelecegiDugumOncesi->next;
@@ -21,9 +23,7 @@ void Doku::RadixSort()
             tempPrevious=temp;
             temp=temp->next;
         }
-
-        KonumSirala(temp,tempPrevious,gelecegiDugumOncesi);
-
+        KonumSirala(temp,tempPrevious,gelecegiDugumOncesi); // hata var
         if(gelecegiDugumOncesi==NULL)
         {
             gelecegiDugumOncesi=hucreHead; 

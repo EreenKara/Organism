@@ -1,5 +1,6 @@
 Genel: Derle Bagla Calistir
 Derle:
+
 	g++ -I ./include/ -c ./src/Hucre.cpp -o ./lib/Hucre.o
 	g++ -I ./include/ -c ./src/Doku.cpp -o ./lib/Doku.o
 	g++ -I ./include/ -c ./src/BSTNode.cpp -o ./lib/BSTNode.o
@@ -10,10 +11,13 @@ Derle:
 	g++ -I ./include/ -c ./src/SistemNode.cpp -o ./lib/SistemNode.o
 	g++ -I ./include/ -c ./src/Organizma.cpp -o ./lib/Organizma.o
 	g++ -I ./include/ -c ./src/OrganNode.cpp -o ./lib/OrganNode.o
+	g++ -I ./include/ -c ./src/DosyaOkuma.cpp -o ./lib/DosyaOkuma.o
+	g++ -I ./include/ -c ./src/Queue.cpp -o ./lib/Queue.o
+	g++ -I ./include/ -c ./src/Radix.cpp -o ./lib/Radix.o
 	g++ -I ./include/ -c ./src/main.cpp -o ./lib/main.o
 	
 Bagla:
-	g++ ./lib/Hucre.o ./lib/Doku.o ./lib/Kontrol.o ./lib/BST.o ./lib/BSTNode.o ./lib/Organ.o ./lib/Sistem.o ./lib/SistemNode.o ./lib/Organizma.o ./lib/OrganNode.o ./lib/main.o -o ./bin/program.exe
+	g++ ./lib/Hucre.o ./lib/Doku.o ./lib/Kontrol.o ./lib/DosyaOkuma.o ./lib/Queue.o ./lib/Radix.o ./lib/BST.o ./lib/BSTNode.o ./lib/Organ.o ./lib/Sistem.o ./lib/SistemNode.o ./lib/Organizma.o ./lib/OrganNode.o ./lib/main.o -o ./bin/program.exe
 Calistir:
 	./bin/program.exe
 	

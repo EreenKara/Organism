@@ -16,11 +16,11 @@ bool BST::AVLmi(BSTNode* subnode)
         {
             return false;
         }
-        else
-        {
-            if(AVLmi(subnode->left)==false) return false;
-            if(AVLmi(subnode->right)==false) return false;
-        }
+        // else
+        // {
+        //     if(AVLmi(subnode->left)==false) return false;
+        //     if(AVLmi(subnode->right)==false) return false;
+        // }
     }
     return true;
 }
@@ -50,7 +50,7 @@ void BST::Add(Doku* doku)
 }
 void BST::AddPrivate(BSTNode*& subnode,Doku* doku)
 {
-    if(!subnode) subnode=new BSTNode(doku);
+    if(!subnode) subnode=new BSTNode(doku); 
     else if(doku->Ortanca()<subnode->doku->Ortanca())
     {
         AddPrivate(subnode->left,doku);

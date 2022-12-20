@@ -15,7 +15,7 @@ private:
 public:
     Organ();
     void MutasyonaUgra();
-    bool Dengesizmi();
+    bool Dengelimi();
 
 };
 

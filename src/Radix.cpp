@@ -48,9 +48,10 @@ int* Radix::Sort(Hucre* head,int length)
         kuyruklar[basamakDegeri].Enqueue(temp->value);
         temp=temp->next;
     }
-    int* kuyruklarinSuankiDolulugu=KuyruklarinUzunlugu();
+    int* kuyruklarinSuankiDolulugu;
     for (int i = 1; i < maxBasamak; i++)
     {
+        kuyruklarinSuankiDolulugu =KuyruklarinUzunlugu();
         for (int j = 0; j < 10; j++)
         {
             int uzunluk=kuyruklarinSuankiDolulugu[j];
@@ -61,8 +62,8 @@ int* Radix::Sort(Hucre* head,int length)
                 kuyruklar[j].Dequeue();
                 basamakDegeri= (sayi/(int)pow(10,i)) % 10;
                 kuyruklar[basamakDegeri].Enqueue(sayi);
-            }   
-        }        
+            }    
+        }   
     }
     delete [] kuyruklarinSuankiDolulugu;
     int* siralanmisSayilar=new int[length]; 

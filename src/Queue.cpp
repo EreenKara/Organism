@@ -7,7 +7,7 @@ Queue::Queue()
 }
 int Queue::Peek()
 {
-    if(length==0) return NULL;
+    if(length==0) return -1;
     return front->value;
 }
 void Queue::Enqueue(int veri)
@@ -24,12 +24,15 @@ void Queue::Dequeue()
 {
     if(length==0) return;
     Hucre* del=front;
-
-    front=front->next;
     if(length==1)
     {
         back=front->next; // zaten front'un next'i NULL olacağından NULL yazmadım. front->next dedim
     }
-    delete front;
+    front=front->next;
+    delete del;
     length--;
+}
+Queue::~Queue()
+{
+
 }

@@ -2,8 +2,8 @@
 
 Sistem::Sistem()
 {
-    organHead=NULL;
-    length=0;
+    this->organHead=NULL;
+    this->length=0;
 }
 void Sistem::Add(Organ* organ)
 {

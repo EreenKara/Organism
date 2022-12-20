@@ -5,14 +5,13 @@ DosyaOkuma::DosyaOkuma(string dosyaYolu)  // dosyayolunda bir dosya var mı yok 
     satirSayisi=0;
     string yazi="";
     Read.open(dosyaYolu,ios::in);
-    cout<<"Satir Sayisi Hesaplaniyor"<<endl;
     while(!Read.eof())
     {
         getline(Read,yazi);
         satirSayisi++;
     }
     Read.close();
-    satirdakiSayiSayisi=new int[satirSayisi];
+    satirSayiSayisi=new int[satirSayisi];
 }
 int* DosyaOkuma::BelirliBirSatir(int satirNumarasi)
 {
@@ -52,13 +51,13 @@ int** DosyaOkuma::Oku()  //döndürdüğü adresin alanını geri bırakmıyor b
         getline(Read,yazi);
         for (int i = 0; i < yazi.length(); i++)
         {
-            if (yazi==" ")
+            if (yazi[i] ==' ')
             {
                 satirdakiSayiSayisi++;
             }
         }
         sayilar[i]=new int[satirdakiSayiSayisi];
-        this->satirdakiSayiSayisi[i]=satirdakiSayiSayisi;
+        this->satirSayiSayisi[i]=satirdakiSayiSayisi;
         for (int j = 0; j < satirdakiSayiSayisi; j++)
         {
             sayilar[i][j] = stoi(yazi.substr(0, yazi.find(" ")));    // stoi fonksiyonu stringi integer'a çeviriyor.

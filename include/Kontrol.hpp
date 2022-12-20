@@ -14,6 +14,7 @@ private:
 public:
     Kontrol(string dosyaYolu);
     void OrganizmayiOlustur();
+    void Yazdir();
     ~Kontrol();
 };
 

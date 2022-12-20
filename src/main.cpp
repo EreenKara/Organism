@@ -1,13 +1,11 @@
 #include <iostream>
-#include "Doku.hpp"
-#include "BST.hpp"
-#include "DosyaOkuma.hpp"
+#include "Kontrol.hpp"
 using namespace std;
 
 int main()
 {
-    DosyaOkuma dosya("Veri.txt");
-    
+    Kontrol* kontrol=new Kontrol("Veri.txt"); 
+    kontrol->Yazdir();
     
     
     

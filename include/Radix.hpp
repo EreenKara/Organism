@@ -2,6 +2,7 @@
 #define Radix_hpp
 #include "Doku.hpp"
 #include "Queue.hpp"
+#include <math.h>
 class Kontrol;
 class Doku;
 class Radix
