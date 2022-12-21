@@ -3,6 +3,7 @@
 #include "Organizma.hpp"
 #include "DosyaOkuma.hpp"
 #include <conio.h>
+#include <iomanip>
 class Kontrol
 {
 private:

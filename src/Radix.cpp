@@ -1,3 +1,12 @@
+/*
+* @filee Radix.cpp
+* @description Bagli Liste , Agac, Queue, Radix Sort kullanarak organizma olusturuyor.
+* @course Veri Yapilari 1-B
+* @assignment 2
+* @datee 08/12/2022
+* @authorr Eren Kara , errennkaaraa@hotmail.com
+*/
+
 #include "Radix.hpp"
 Radix::Radix()
 {
@@ -34,7 +43,7 @@ int Radix::EnBuyukBasamak(Hucre* head,int length)
             enBuyukBasamak=BasamakSayisi(temp->value);
         }
     }
-    maxBasamak=enBuyukBasamak;
+    maxBasamak=enBuyukBasamak;  // sinifin bir degiskeni olan max basamagi guncelliyor.
     return enBuyukBasamak;
 }
 int* Radix::Sort(Hucre* head,int length)
@@ -42,17 +51,17 @@ int* Radix::Sort(Hucre* head,int length)
     EnBuyukBasamak(head,length);
     int basamakDegeri=0;
     Hucre* temp=head;
-    for (int i = 0; i < length; i++)
+    for (int i = 0; i < length; i++) // Kuyruklara ilk ekelemeyi yapiyor.
     {
         basamakDegeri=temp->value%10;
         kuyruklar[basamakDegeri].Enqueue(temp->value);
         temp=temp->next;
     }
     int* kuyruklarinSuankiDolulugu;
-    for (int i = 1; i < maxBasamak; i++)
+    for (int i = 1; i < maxBasamak; i++)  // kuyruklara 1. disindaki eklemeyi yapiyor
     {
         kuyruklarinSuankiDolulugu =KuyruklarinUzunlugu();
-        for (int j = 0; j < 10; j++)
+        for (int j = 0; j < 10; j++)  // 10 tane basmak degeri kuyrugunun icini bosaltiyor ve bosaltirken ekleme yapiyor.
         {
             int uzunluk=kuyruklarinSuankiDolulugu[j];
             int sayi=0;

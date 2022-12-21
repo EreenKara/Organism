@@ -11,14 +11,14 @@ private:
     friend Organ;
     friend Organizma;
     friend Kontrol;
-    int Yukseklik(BSTNode* subnode);
-    BSTNode* Ara(BSTNode* subnode,int veri);
-    void PostOrder(BSTNode* subnode);
-    void AddPrivate(BSTNode*& subnode,Doku* doku);
-    void DeletePrivate(BSTNode*& subnode,int veri);
-    void DeleteReal(BSTNode*& subnode);
-    void DokuKopyalama(Doku*& doku1,Doku*& doku2);
-    bool AVLmi(BSTNode* subnode);
+    int Yukseklik(BSTNode* subnode);  // Yukselik buluyor
+    BSTNode* Ara(BSTNode* subnode,int veri);  // verilen bir integer degeri istenilen dugumden itibaren ariyor
+    void PostOrder(BSTNode* subnode);   // PostOrder yazdirmanin Recursive'i icin yazilan fonk. 
+    void AddPrivate(BSTNode*& subnode,Doku* doku);  // Ekleme islemini disaridan gizlemek ve recursive oalrak yazmak icin olusturdugum bir fonskiyon
+    void DeletePrivate(BSTNode*& subnode,int veri); // Silinecek degeri ariyor.
+    void DeleteReal(BSTNode*& subnode);  // silme islemindeki aradaki baglari ayarliyor.
+    void DokuKopyalama(Doku*& doku1,Doku*& doku2);  // Dokuyu baska bir dokuya kopyaliyor.
+    bool AVLmi(BSTNode* subnode);  // Agac'in AVL agacina uyup uymadigina bakiyor.
     void PreOrderMutasyon(BSTNode* subnode);
     void ClearPrivate(BSTNode* subnode);
     int PostOrderYedekle(Doku** dokular,BSTNode* subnode,int index);
@@ -26,9 +26,9 @@ private:
     void PostOrderYeniAgac();
 public:
     BST();
-    void Add(Doku* doku);
-    void Delete(int veri);
-    void PostOrder();
+    void Add(Doku* doku); // Disariya actigim ekleme durumu
+    void Delete(int veri); // Disariya actigim silme durumu
+    void PostOrder();  // PostOrder Yazdirma Islemi
     void Clear();
     ~BST();
     

@@ -1,3 +1,12 @@
+/*
+* @filee BST.cpp
+* @description Bagli Liste , Agac, Queue, Radix Sort kullanarak organizma olusturuyor.
+* @course Veri Yapilari 1-B
+* @assignment 2
+* @datee 08/12/2022
+* @authorr Eren Kara , errennkaaraa@hotmail.com
+*/
+
 #include "BST.hpp"
 BST::BST()
 {
@@ -8,18 +17,18 @@ int BST::Yukseklik(BSTNode* subnode)
     if(subnode) return 1+std::max(Yukseklik(subnode->left), Yukseklik(subnode->right));
     return -1;
 }
-bool BST::AVLmi(BSTNode* subnode)
+bool BST::AVLmi(BSTNode* subnode)  // yuksekligi 2 den fazla olan bir node buldugunda false donuyor. Her bir dugumu kontrol ediyor.
 {
     if(subnode)
     {
         if(abs(Yukseklik(subnode->left)-Yukseklik(subnode->right))>=2)
         {
-            
             return false;
         }
         else
         {
-            if(AVLmi(subnode->left)==false) return false;
+            if(AVLmi(subnode->left)==false) return false;  // Herhangi bir tanesinin false olmasi bozmak icin yeterli ancak
+                                                           // Herhangi bir tanesinin true olmasi AVL agaci yapmiyor bunu. 
             if(AVLmi(subnode->right)==false) return false;
         }
     }
@@ -92,11 +101,12 @@ void BST::DeleteReal(BSTNode*& subnode)
             del=del->left;
         }
         DokuKopyalama(del->doku,subnode->doku);
+        // subnode->doku=del->doku; bir ifade ancak bunu yazmamın nedeni 
+        // BSTNode silindiğinde destructor onun dokusunu da siliyor
         if(parent==subnode)    subnode->right=parent->right;
         else
             parent->left=del->right;
-        // subnode->doku=del->doku; bir ifade ancak bunu yazmamın nedeni 
-        // BSTNode silindiğinde destructor onun dokusunu da siliyor
+       
     }
     else
     {
@@ -105,19 +115,18 @@ void BST::DeleteReal(BSTNode*& subnode)
             del=subnode;
             subnode=subnode->right;
         }
-        else if(subnode->right==0) // sağı varsa
+        else if(subnode->right==0) // solu varsa
         {
             del=subnode;
             subnode=subnode->left;
         }
-        else
+        else  // sagi ve solu yoksa 
         {
             del=subnode;
             subnode=0;
         }
     }
     delete del;
-    
 }
 void BST::DeletePrivate(BSTNode*& subnode,int veri)
 {
@@ -149,7 +158,6 @@ void BST::PostOrderYeniAgac()
 
     PostOrderSil(kok);
     kok=yeniKok;
-
 }
 int BST::PostOrderYedekle(Doku** dokular,BSTNode* subnode,int index)
 {

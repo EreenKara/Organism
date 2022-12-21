@@ -1,16 +1,25 @@
+/*
+* @filee Kontrol.cpp
+* @description Bagli Liste , Agac, Queue, Radix Sort kullanarak organizma olusturuyor.
+* @course Veri Yapilari 1-B
+* @assignment 2
+* @datee 08/12/2022
+* @authorr Eren Kara , errennkaaraa@hotmail.com
+*/
+
 #include "Kontrol.hpp"
 
 Kontrol::Kontrol(string dosyaYolu)
 {
     organizma=new Organizma();
-    dosya = new DosyaOkuma(dosyaYolu);
+    dosya = new DosyaOkuma(dosyaYolu); 
     dokuSayisi=dosya->satirSayisi;
-    organSayisi=(dosya->satirSayisi/20)+1;
-    sistemSayisi=(dosya->satirSayisi/2000)+1;
-    OrganizmayiOlustur();
+    organSayisi=(dosya->satirSayisi/20)+1;  // kullanmiyorum ama dursun yine de
+    sistemSayisi=(dosya->satirSayisi/2000)+1;   // kullanmiyorum ama dursun yine de
+    OrganizmayiOlustur(); // kontrol olustugunda direkt olarak bagli liste, agac, yapilarina atama yapiyor 
 }
 
-void Kontrol::OrganizmayiOlustur()
+void Kontrol::OrganizmayiOlustur()  // Organizma'nin lusmasi icin gerekli yapilara ekleme islemleri yapiyor.
 {
     int** sayilar = dosya->Oku();
     Organ* organ=new Organ();
@@ -38,16 +47,16 @@ void Kontrol::OrganizmayiOlustur()
     delete [] sayilar;   
 }
 
-void Kontrol::Yazdir()
+void Kontrol::Yazdir()   // 
 {
     SistemNode* tempSistem = organizma->sistemHead;
     OrganNode* tempOrgan;
-    for (int i = 0; i < organizma->length; i++)
+    for (int i = 0; i < organizma->length; i++)  //sistemleri dolasiyor. Sistem saiysi kadar donecek
     {
         tempOrgan=tempSistem->sistem->organHead;
-        for (int j = 0; j < tempSistem->sistem->length; j++)
+        for (int j = 0; j < tempSistem->sistem->length; j++)  // Organlari dolasiyor
         {
-            if (tempOrgan->organ->Dengelimi())
+            if (tempOrgan->organ->Dengelimi())  // AVL'ye gore denge kontrol ediyor 
             {
                 cout<<" ";
             }
@@ -62,23 +71,27 @@ void Kontrol::Yazdir()
     }
 }
 
-void Kontrol::Mutasyon()
+void Kontrol::Mutasyon()  // Kullanicinin kullancagi fonksiyonlari tek bir yerden kontrol etmek icin buraya da bir mutasyon fonk yazdim.
 {
     organizma->MutasyonaUgra();
 }
-char Kontrol::GetKey()
+char Kontrol::GetKey()  // kullanicidan girilen char degeri okuyor
 {
     char key;
     key=_getch();
     return key;
 }
-void Kontrol::Interface()
+void Kontrol::Interface()  // Kullaniciya Arayuz saglamak icin yazdim
 {
     char key;
     bool mutasyonOldumu=false;
     do
     {
         system("cls");
+        if(mutasyonOldumu)
+        {
+            std::cout<<std::setw(55)<<"Organizma ( Mutasyona Ugradi ) "<<std::endl;
+        }
         Yazdir();
         std::cout<<std::endl;
         if(mutasyonOldumu) break;

@@ -1,3 +1,12 @@
+/*
+* @filee Doku.cpp
+* @description Bagli Liste , Agac, Queue, Radix Sort kullanarak organizma olusturuyor.
+* @course Veri Yapilari 1-B
+* @assignment 2
+* @datee 08/12/2022
+* @authorr Eren Kara , errennkaaraa@hotmail.com
+*/
+
 #include "Doku.hpp"
 #include <iostream>
 
@@ -12,7 +21,7 @@ void Doku::RadixSort()
         tempPrevious=NULL;
         if(gelecegiDugumOncesi!=NULL) 
         {
-            temp=gelecegiDugumOncesi->next;
+            temp=gelecegiDugumOncesi->next;  // aramaya bastan degil en son eklenen yerden basliyor.
             tempPrevious=gelecegiDugumOncesi;
         }     
         for (int j = 0; j < length; j++)  // listeden eşleşeni bulma
@@ -24,7 +33,7 @@ void Doku::RadixSort()
             tempPrevious=temp;
             temp=temp->next;
         }       
-        KonumSirala(temp,tempPrevious,gelecegiDugumOncesi); // hata var
+        KonumSirala(temp,tempPrevious,gelecegiDugumOncesi); 
 
         if(gelecegiDugumOncesi==NULL)
         {

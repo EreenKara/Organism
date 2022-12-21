@@ -1,3 +1,12 @@
+/*
+* @filee DosyaOkuma.cpp
+* @description Bagli Liste , Agac, Queue, Radix Sort kullanarak organizma olusturuyor.
+* @course Veri Yapilari 1-B
+* @assignment 2
+* @datee 08/12/2022
+* @authorr Eren Kara , errennkaaraa@hotmail.com
+*/
+
 #include "DosyaOkuma.hpp"
 DosyaOkuma::DosyaOkuma(string dosyaYolu)  // dosyayolunda bir dosya var mı yok mu kontrol et
 {
@@ -33,7 +42,7 @@ int* DosyaOkuma::BelirliBirSatir(int satirNumarasi)
     for (int i = 0; i < satirdakiSayiSayisi; i++)
     {
         sayilar[i] = stoi(yazi.substr(0, yazi.find(" ")));    // stoi fonksiyonu stringi integer'a çeviriyor.
-        yazi = yazi.substr(yazi.find(" ")+1, yazi.length());
+        yazi = yazi.substr(yazi.find(" ")+1, yazi.length());  // substr belirli bir noktadan baslayarak verilen sayi kadar ilerliyor ve onu donduruyor.
     }
     Read.close();
     return sayilar;
@@ -57,7 +66,7 @@ int** DosyaOkuma::Oku()  //döndürdüğü adresin alanını geri bırakmıyor b
             satirdakiSayiSayisi++;
         }
         sayilar[i]=new int[satirdakiSayiSayisi];
-        this->satirSayiSayisi[i]=satirdakiSayiSayisi;
+        this->satirSayiSayisi[i]=satirdakiSayiSayisi;  //
         
         for(int j=0;getline(isss,sayi,' ');j++)
         {

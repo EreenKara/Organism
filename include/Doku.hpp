@@ -29,6 +29,7 @@ public:
     int Ortanca();
     void Print();
     void KonumSirala(Hucre* subnode,Hucre* subnodePrevious,Hucre* gelecegiDugumOncesi);
+    // Radix Sort yaptiktan sonra siralari ayarlayabilmek icin Konumlari siraliyorum. Baglantiyi koparip olmasi gerektigi yer tasiyorum.  
     ~Doku();
     void Clear();
 

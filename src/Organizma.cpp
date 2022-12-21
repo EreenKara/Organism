@@ -1,26 +1,33 @@
+/*
+* @filee Organizma.cpp
+* @description Bagli Liste , Agac, Queue, Radix Sort kullanarak organizma olusturuyor.
+* @course Veri Yapilari 1-B
+* @assignment 2
+* @datee 08/12/2022
+* @authorr Eren Kara , errennkaaraa@hotmail.com
+*/
+
 #include "Organizma.hpp"
 Organizma::Organizma()
 {
     this->sistemHead=NULL;
     this->length=0;
 }
-void Organizma::MutasyonaUgra()
+void Organizma::MutasyonaUgra()  // tek tek hangi organin mutasyona ugrayacagini buluyor ve onların Mutasyona ugra Fonksiyonunu cagiriyor. 
 {
     SistemNode* sistemTemp=sistemHead;
-    for (int i = 0; i < length; i++)
+    for (int i = 0; i < length; i++) // sistem sayisi kadar donecek
     {
         OrganNode* organTemp=sistemTemp->sistem->organHead;
-        for (int j = 0; j < sistemTemp->sistem->length; j++)
+        for (int j = 0; j < sistemTemp->sistem->length; j++) // sistemdeki organ sayisi kadar donecek.
         {
-            //organ
-            if(organTemp->organ->agac->kok->doku->Ortanca()%50==0)
+            if(organTemp->organ->agac->kok->doku->Ortanca()%50==0) // Agacin kokundeki dokunun ortasindak deger 50'ye tam bolunuyoras Mutasyon gerceklesecek.
             {
                 organTemp->organ->MutasyonaUgra();
                 organTemp->organ->YeniAgac();
             }
             organTemp=organTemp->next;
         }
-        //sistem
         sistemTemp=sistemTemp->next;
     }
     
