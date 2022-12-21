@@ -69,7 +69,7 @@ int* Radix::Sort(Hucre* head,int length)
             {
                 sayi=kuyruklar[j].Peek();
                 kuyruklar[j].Dequeue();
-                basamakDegeri= (sayi/(int)pow(10,i)) % 10;
+                basamakDegeri= int(sayi/pow(10,i)) % 10;
                 kuyruklar[basamakDegeri].Enqueue(sayi);
             }    
         }   
