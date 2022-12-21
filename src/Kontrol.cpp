@@ -62,69 +62,47 @@ void Kontrol::Yazdir()
     }
 }
 
+void Kontrol::Mutasyon()
+{
+    organizma->MutasyonaUgra();
+}
+char Kontrol::GetKey()
+{
+    char key;
+    key=_getch();
+    return key;
+}
+void Kontrol::Interface()
+{
+    char key;
+    bool mutasyonOldumu=false;
+    do
+    {
+        system("cls");
+        Yazdir();
+        std::cout<<std::endl;
+        if(mutasyonOldumu) break;
+        else
+        {
+            std::cout<<"Mutasyon icin Enter tusuna bas"<<std::endl;
+            std::cout<<"Cikis icin ESC tusuna bas"<<std::endl;
+        }
+        key=GetKey();
+        switch(key)
+        {
+            case 13: 
+                Mutasyon();
+                mutasyonOldumu=true;
+                break;
+            default:
+                break;
+        }
+    } while (key!=27);
+    std::cout<<std::endl;
+    std::cout<<"Cikis Yaptiniz";
+}
 Kontrol::~Kontrol()
 {
     delete dosya;
     delete organizma;
 }
-
-// void Kontrol::Yazdir()
-// {
-//     SistemNode* tempSistem=organizma->sistemHead;
-//     OrganNode* tempOrgan=tempSistem->sistem->organHead;
-//     Doku* doku=tempOrgan->organ->agac->kok->doku;
-
-//     tempOrgan->organ->agac->PostOrder();
-    
-// }
-
-// void Kontrol::OrganizmayiOlustur()
-// {
-//     int** sayilar = dosya->Oku();
-//     Doku** doku=new Doku*[dosya->satirSayisi];
-//     Organ** organ=new Organ*[organSayisi];
-//     Sistem** sistem=new Sistem*[sistemSayisi];
-//     int organsayi=0;
-//     int sistemsayi=0;
-//     doku[0]=new Doku();
-//     for (int m = 0; m < dosya->satirSayiSayisi[0]; m++)
-//     {
-//         doku[0]->Add(sayilar[0][m]);
-//     }
-//     doku[0]->RadixSort();
-//     for (int k = 1; k <= dokuSayisi; k++)
-//     {
-//         doku[k]=new Doku();
-//         for (int m = 0; m < dosya->satirSayiSayisi[k]; m++)
-//         {
-//             doku[k]->Add(sayilar[k][m]);
-//         }
-//         if(k%20==0||k==1)
-//         {
-//             if(k!=1)
-//             {
-//                 sistem[sistemsayi]->Add(organ[organsayi]);
-//                 organsayi++;
-//             }
-//             organ[organsayi]=new Organ();
-//         }
-        
-//         if(k==1)
-//         {
-//             organ[organsayi]->agac->Add(doku[0]);
-//         }
-//         doku[k]->RadixSort();
-//         organ[organsayi]->agac->Add(doku[k]); // hata burda
-        
-//         if(k%2000==0||k==1) 
-//         { 
-//             if(k!=1)
-//             {
-//                 organizma->Add(sistem[sistemsayi]);
-//                 sistemsayi++;
-//             }
-//             sistem[sistemsayi]=new Sistem();
-//         }
-//     }
-//     delete [] sayilar;   
-// }

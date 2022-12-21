@@ -16,6 +16,7 @@ public:
     Organ();
     void MutasyonaUgra();
     bool Dengelimi();
+    void YeniAgac();
     ~Organ();
 };
 

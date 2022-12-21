@@ -21,7 +21,7 @@ private:
     bool AVLmi(BSTNode* subnode);
     void PreOrderMutasyon(BSTNode* subnode);
     void ClearPrivate(BSTNode* subnode);
-    void PostOrderYedekle(Doku** dokular,BSTNode* subnode);
+    int PostOrderYedekle(Doku** dokular,BSTNode* subnode,int index);
     void PostOrderSil(BSTNode* subnode);
     void PostOrderYeniAgac();
 public:

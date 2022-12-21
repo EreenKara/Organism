@@ -16,12 +16,14 @@ void Organizma::MutasyonaUgra()
             if(organTemp->organ->agac->kok->doku->Ortanca()%50==0)
             {
                 organTemp->organ->MutasyonaUgra();
+                organTemp->organ->YeniAgac();
             }
             organTemp=organTemp->next;
         }
         //sistem
         sistemTemp=sistemTemp->next;
     }
+    
 }
 void Organizma::Add(Sistem* sistem)
 {

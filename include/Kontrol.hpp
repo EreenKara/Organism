@@ -2,6 +2,7 @@
 #define Kontrol_hpp
 #include "Organizma.hpp"
 #include "DosyaOkuma.hpp"
+#include <conio.h>
 class Kontrol
 {
 private:
@@ -15,6 +16,9 @@ public:
     Kontrol(string dosyaYolu);
     void OrganizmayiOlustur();
     void Yazdir();
+    void Mutasyon();
+    void Interface();
+    char GetKey();
     ~Kontrol();
 };
 

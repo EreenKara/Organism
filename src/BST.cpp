@@ -64,7 +64,6 @@ void BST::AddPrivate(BSTNode*& subnode,Doku* doku)
     {
         subnode->left=new BSTNode(doku,subnode->left);
     }
-    
 }
 void BST::DokuKopyalama(Doku*& doku1,Doku*& doku2)
 {
@@ -140,52 +139,55 @@ void BST::PostOrderYeniAgac()
 {
     BSTNode* yeniKok=NULL;
     Doku** dokular=new Doku*[20];
-    PostOrderYedekle(dokular,kok);
+
+    PostOrderYedekle(dokular,kok,0);
+
     for (int i = 0; i < 20; i++)
     {
         AddPrivate(yeniKok,dokular[i]);
     }
+
     PostOrderSil(kok);
     kok=yeniKok;
+
 }
-void BST::PostOrderYedekle(Doku** dokular,BSTNode* subnode)
+int BST::PostOrderYedekle(Doku** dokular,BSTNode* subnode,int index)
 {
-    static int index=0;
     if(subnode)
     {   
-        PostOrderYedekle(dokular,subnode->left);
-        PostOrderYedekle(dokular,subnode->right);
-        dokular[index]=subnode->doku;
+        index =PostOrderYedekle(dokular,subnode->left,index);
+        index =PostOrderYedekle(dokular,subnode->right,index);
+        Hucre* temp=subnode->doku->hucreHead;
+        dokular[index]=new Doku();
+        for (int i = 0; i < subnode->doku->length; i++)
+        {
+            dokular[index]->Add(temp->value);
+            temp=temp->next;
+        }
         index++;
     }
+    return index;
 }
 void BST::PostOrderSil(BSTNode* subnode)
 {
     if(subnode)
     {   
-        
         PostOrderSil(subnode->left);
         PostOrderSil(subnode->right);
-        Delete(subnode->doku->Ortanca());
+        DeleteReal(subnode);
     }
 }
 
 BST::~BST()
 {
-
     Clear();
 }
-
-
-
 void BST::Clear()
 {
     ClearPrivate(kok);
-    
 }
 void BST::ClearPrivate(BSTNode* subnode)
 {
-    
     if(subnode)
     {
         ClearPrivate(subnode->left);
