@@ -150,7 +150,12 @@ void BST::PostOrderYeniAgac()
     Doku** dokular=new Doku*[20];
 
     PostOrderYedekle(dokular,kok,0);
-
+    
+    for (int i = 0; i < 20; i++)
+    {
+        dokular[i]->RadixSort();
+    }
+    
     for (int i = 0; i < 20; i++)
     {
         AddPrivate(yeniKok,dokular[i]);
